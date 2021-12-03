@@ -1,0 +1,43 @@
+""" 
+    路径参数
+ """
+
+# 我们再写一个接口,这个接口的作用是要查看所有的没有发表的博客
+""" 
+    如果这个结果写在/blog/{id}的后面就会报错
+    报错的内容如下
+        "detail": [
+            {
+            "loc": [
+                "path",
+                "id"
+            ],
+            "msg": "value is not a valid integer",
+            "type": "type_error.integer"
+            }
+        ]
+    这是因为fastApi是一个一行的运行的,所以路由是/blog/unpublished,会去主动先找/blog/{id}
+    因为id设置的参数类型是int所以会报错
+    如果想让正确的扎到/blog/unpublished,就要把这个写在/blog/{id}的前面
+ """
+
+
+@app.get('/blog/unpublished')
+def unpublished():
+    return {'data': 'This is all unpublished blogs'}
+
+# 这样获取的id的是字符串类型,我们可以在函数的参数中指定参数的类型
+# 比如:id:int,这样返回的id参数就是int类型,还可以适配str类型等等
+
+
+@app.get('/blog/{id}')
+def show(id: int):
+    return {'data': id}
+
+
+# 获取blog下的评论
+
+
+@app.get('/blog/{id}/comments')
+def comments():
+    return {'data': [1, 2, 3, 4]}
