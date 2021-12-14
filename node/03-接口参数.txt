@@ -1,0 +1,23 @@
+查询参数
+  # @app.get('/blog')
+  # def index(sublime=10):
+  #     return {'data': f'show {sublime} bolg list'}
+  # "data": "show 10 bolg list"
+
+  # 除了可以给参数传入一个默认值之外,还可以给这个参数一个类型
+  # unpublished: str = True 就是给这个参数一个默认是True,且这个类型必须是波尔类型
+  # @app.get('/blog')
+  # def index(sublime=10, unpublished: bool = True):
+  #     if unpublished:
+  #         return {'data': f'show {sublime} unpublished  bolg list'}
+  #     else:
+  #         return {'data': f'show {sublime} unpublish  bolg list'}
+
+  # 最后可以给这个参数置顶是非必填,且没有默认值
+  # 比如给这个函数添加一个sort的参数,这个参数是可选择的传入也即是非必填,并且没有默认值 sort:Optional[str] = None
+  @app.get('/blog')
+  def index(sublime=10, unpublished: bool = True, sort: Optional[str] = None):
+      if unpublished:
+          return {'data': f'show {sublime} unpublished  bolg list'}
+      else:
+          return {'data': f'show {sublime} unpublish  bolg list'}

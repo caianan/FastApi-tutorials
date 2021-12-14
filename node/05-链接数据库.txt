@@ -1,0 +1,25 @@
+#先创建一个数据库文件 database.py,配置下面的内容
+
+#引入引擎
+from sqlalchemy import create_engine
+
+from sqlalchemy.ext.declarative import declarative_base
+
+from sqlalchemy.orm import sessionmaker
+
+
+# 创建一个sql_app.db的文件,这个文件可以自定义名字
+SQLALCHEMY_DATABASE_URL = "sqlite:///./sql_app.db"
+# SQLALCHEMY_DATABASE_URL = "postgresql://user:password@postgresserver/db"
+
+engine = create_engine(
+    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
+)
+#engine就是前面创建的数据库引擎
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+Base = declarative_base()
+
+
+#安装的包 sqlalchemy pymysql
+

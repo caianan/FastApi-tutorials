@@ -1,0 +1,14 @@
+请求体
+  class Blog(BaseModel):
+    # 在类中定义请求体的参数名和参数类型
+    title: str
+    body: str
+    unpublished: Optional[bool]
+  # 在这个函数中传入之前创建的Blog类
+  # blog: Blog 表示传入的类型是Blog,blog表示传入的参数名,这个参数名可以随便起,request也可以
+
+
+  @app.post('/blog')
+  def create_blog(blog: Blog):
+      return {'data': f'you have created {blog.title} blog'}
+  

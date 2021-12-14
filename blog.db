@@ -1,0 +1,1 @@
+str = 'mysql+pymysql://root:6008@localhost:3306/fasttest'
